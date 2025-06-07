@@ -169,9 +169,17 @@ Response:
 
 ## Error Handling
 
-* Network errors and headless‐detach errors are retried up to 2 times.
+* Network errors and headless‐detach errors are retried up to 5 times.
 * Session health is checked before retry; sessions are reinitialized if needed.
 * Uncaught exceptions return HTTP 500 with details in the response body.
+
+
+## Troubleshooting & Known Limitations
+
+* Retry Limit: I retried navigation 5 times (the default) and still couldn’t clone strict sites like Tesla.
+* Anti‑bot Protections: I upped max_retries and scroll attempts, extended timeouts (waitUntil, navigation and network idle), randomized the User-Agent, added delays between scrolls, and even routed through a proxy—but Tesla’s bot defenses still blocked the clone.
+* Dynamic Content Constraints: I observed heavy client-side frameworks and authentication tokens on Tesla’s pages that require login, making a full clone impossible without valid session credentials.
+
 
 ## Contributing
 
