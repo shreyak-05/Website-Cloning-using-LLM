@@ -18,6 +18,18 @@ This project implements a proof‑of‑concept for Orchids’ website cloning fe
 * Configurable CSS framework (Tailwind, Bootstrap, custom)
 * FastAPI endpoints for cloning, health check, and stats
 
+
+## Process Overview
+
+* Start browserLaunch a Hyperbrowser session and connect Pyppeteer with a real User‑Agent and navigator.webdriver=false.
+* Load & scrollNavigate to the target URL and auto‑scroll to surface any lazy‑loaded content.
+* Grab layout blocksExtract headers, navs, sections, articles, etc., recording tag, size and element flags (link, button, image).
+* Compress dataSummarize block information into a compact JSON snippet.
+* Craft LLM promptCombine the JSON summary, extracted colors/fonts and chosen CSS framework into a tight instruction for Claude.
+* Generate HTMLSend the prompt to Anthropic Claude-3.5 Sonnet and receive a complete, responsive HTML document.
+* Configurable CSS framework (Tailwind, Bootstrap, custom)
+* Cleanup & returnClose the page, browser connection and Hyperbrowser session, then return the generated HTML along with stats.
+
 ## Prerequisites
 
 * Python 3.9+ (tested with 3.10)
